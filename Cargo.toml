@@ -1,0 +1,14 @@
+[package]
+name = "blek"
+description = "Blek le Rat is a fast, simple template tool for the commandline"
+version = "0.1.0"
+authors = ["Bèr Kessels <ber@berk.es>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+[dev-dependencies]
+assert_cmd = "0.10"
+predicates = "1"

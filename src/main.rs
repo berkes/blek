@@ -60,12 +60,11 @@ fn main() {
 }
 
 fn context(user_pairs: Vec<Vec<String>>) -> Context {
-    let mut context = Context::new();
+    let mut context = basics::context();
 
     for pair in user_pairs {
         context.insert(pair[0].as_str(), pair[1].as_str());
     }
 
-    context.extend(basics::context());
     context
 }

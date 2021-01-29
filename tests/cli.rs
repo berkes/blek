@@ -65,3 +65,21 @@ fn with_argument_variables() -> Result<(), Box<dyn std::error::Error>> {
 
     Ok(())
 }
+
+#[test]
+fn with_argument_variable_that_overrides_basic() -> Result<(), Box<dyn std::error::Error>> {
+    let mut file = NamedTempFile::new()?;
+    // We need to escape the {{, with two more {{.
+    writeln!(file, "Invoice date {{{{ date }}}}")?;
+
+    let mut cmd = Command::cargo_bin("blek")?;
+    cmd.arg(file.path());
+    cmd.arg("--var");
+    cmd.arg("date=2010");
+
+    cmd.assert()
+        .success()
+        .stdout(predicate::str::contains("Invoice date 2010"));
+
+    Ok(())
+}

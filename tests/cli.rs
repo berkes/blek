@@ -10,7 +10,7 @@ fn missing_template_name_test() -> Result<(), Box<dyn std::error::Error>> {
     let mut cmd = Command::cargo_bin("blek")?;
     cmd.assert()
         .failure()
-        .stderr(predicate::str::contains("No template given"));
+        .stderr(predicate::str::contains("No template file given"));
 
     Ok(())
 }
@@ -39,6 +39,29 @@ fn with_predefined_variables() -> Result<(), Box<dyn std::error::Error>> {
     cmd.assert()
         .success()
         .stdout(predicate::str::contains(format!("Now is {}", today)));
+
+    Ok(())
+}
+
+#[test]
+fn with_argument_variables() -> Result<(), Box<dyn std::error::Error>> {
+    let mut file = NamedTempFile::new()?;
+    // We need to escape the {{, with two more {{.
+    writeln!(
+        file,
+        "Invoice number {{{{ number }}}}\n Total €{{{{ total }}}}"
+    )?;
+
+    let mut cmd = Command::cargo_bin("blek")?;
+    cmd.arg(file.path());
+    cmd.arg("--var");
+    cmd.arg("number=42");
+    cmd.arg("--var");
+    cmd.arg("total=13.37");
+
+    cmd.assert()
+        .success()
+        .stdout(predicate::str::contains("Invoice number 42\n Total €13.37"));
 
     Ok(())
 }

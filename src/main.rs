@@ -1,5 +1,6 @@
-use chrono::Local;
 use tera::{Context, Tera};
+
+mod basics;
 
 fn main() {
     let filename = std::env::args().nth(1).expect("No template given");
@@ -18,11 +19,6 @@ fn main() {
 
 fn context() -> Context {
     let mut context = Context::new();
-    let time = format!("{}", Local::now().format("%X"));
-    let date = format!("{}", Local::today().format("%F"));
-
-    context.insert("date", &date);
-    context.insert("time", &time);
-
+    context.extend(basics::context());
     context
 }

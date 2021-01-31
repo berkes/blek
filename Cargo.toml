@@ -1,6 +1,7 @@
 [package]
 name = "blek"
 description = "Blek le Rat is a fast, simple template tool for the commandline"
+readme = "README.md"
 version = "0.1.0"
 authors = ["Bèr Kessels <ber@berk.es>"]
 edition = "2018"

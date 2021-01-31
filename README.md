@@ -1,6 +1,6 @@
 # Blek
 
-Blek le Rat is a fast, simple template tool for the commandline
+[Blek le Rat](https://nl.wikipedia.org/wiki/Blek_le_Rat) is a fast, simple template tool for the commandline.
 
 It accepts [Jinja2](https://jinja.palletsprojects.com/en/2.11.x/)
 templates and replaces variables with those you pass along.

@@ -1,0 +1,20 @@
+image: ubuntu/lts
+packages:
+    - curl
+sources:
+    - https://git.sr.ht/~berkes/blek
+environment:
+    PROJECT_NAME: blek
+artifacts:
+    - "$PROJECT_NAME/target/release/blek"
+tasks:
+    - setup: |
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    - test: |
+        export PATH="/home/build/.cargo/bin:$PATH"
+        cd "$PROJECT_NAME"
+        cargo test --verbose
+    - build: |
+        export PATH="/home/build/.cargo/bin:$PATH"
+        cd "$PROJECT_NAME"
+        cargo build --release --verbose

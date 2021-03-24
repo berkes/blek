@@ -19,6 +19,9 @@ Number: KqSYp872
 Dear John Doe, this the invoice for 1 pizza. Please pay ฿10,000.
 ```
 
+![Crates.io](https://img.shields.io/crates/v/blek)
+![Crates.io](https://img.shields.io/crates/d/blek)
+
 ## Features
 
 * Simple, fast, small.
@@ -31,13 +34,13 @@ Dear John Doe, this the invoice for 1 pizza. Please pay ฿10,000.
 
 ## Quickstart
 
-Requirements:
+Cargo: (TODO how to set up Rust and cargo)
 
-TODO: cargo install
+    cargo install
 
 TODO: release binaries.
 
-Build from source (TODO how to set up Rust and cargo):
+Build from source 
 
     git checkout https://git.webschuur.com/berkes/blek
     cd blek
